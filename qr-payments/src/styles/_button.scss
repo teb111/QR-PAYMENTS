@@ -1,0 +1,85 @@
+.btn {
+  width: 100%;
+  height: 56px;
+  border-radius: 32px;
+  border: 0px;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-family: $font-face-inter;
+  transform: scale(1);
+  transition: transform 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  position: relative;
+
+  &:disabled,
+  &[disabled] {
+    background: #bdc0ce;
+  }
+  &:active {
+    transform: scale(0.92);
+    cursor: pointer;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+
+  // Icon
+  .btn--icon-image {
+    position: absolute;
+    left: 17px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  img {
+    &:active,
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  &--width {
+    width: auto;
+    height: auto;
+  }
+
+  // Button Variations
+  &--primary {
+    color: $white;
+    background: linear-gradient(247.03deg, #2056e3 -45.72%, #2056e3 105.29%);
+  }
+  &--success {
+    color: $white;
+    background: $success;
+  }
+  &--warning {
+    color: $white;
+    background: $warning;
+  }
+  &--error {
+    color: $white;
+    background: $error;
+  }
+  &--light {
+    color: $button-text-dark;
+    background: $white;
+    border: 1px solid $grey-4;
+  }
+  &--dark {
+    color: $white;
+    background: $dark;
+  }
+  &--paystack {
+    color: $white;
+    background: $paystack;
+  }
+  &--none {
+    background-color: transparent;
+    color: $primary-blue;
+  }
+}

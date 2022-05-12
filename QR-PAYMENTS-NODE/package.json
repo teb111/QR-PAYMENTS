@@ -1,0 +1,27 @@
+{
+  "name": "qr-payments-node",
+  "proxy": "http://127.0.0.1:5000",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "@react-pdf/renderer": "^2.1.1",
+    "axios": "^0.27.2",
+    "concurrently": "^7.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon ../backend/QR-PAYMENTS-NODE",
+    "client": "npm start --prefix ../qr-payments",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
+  },
+  "author": "",
+  "license": "ISC"
+}

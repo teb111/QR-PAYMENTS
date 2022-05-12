@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+// Variables
+
+// Colors
+$primary-blue: #2056e3;
+$white: #ffffff;
+$teal: #56bca6;
+$full-black: #000000;
+
+$black: #303237;
+$grey-1: #303237;
+$grey-2: #565c69;
+$grey-3: #7e8494;
+$grey-4: #bdc0ce;
+$grey-5: #e5e7ef;
+$gery-6: #f4f5f8;
+
+// Button Colors
+$success: #8dc63f;
+$warning: #fbbd0f;
+$error: #be0028;
+$dark: #141316;
+$paystack: #001a33;
+$button-text-dark: #565c69;
+
+// Typography
+$font-face-inter: "Inter", sans-serif;
+
+@import "./typography";
+@import "./payment";
+@import "./button";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #d1d5db;
+  font-family: $font-face-inter;
+  font-size: 16px !important;
+}
+// Typography
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+.app {
+  max-width: 375px;
+  max-height: 812px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: $gery-6;
+  &--container {
+    padding: 32px 24px;
+  }
+  @media (max-width: 600px) {
+    max-width: 100vw;
+    max-height: 100vh;
+    height: 100%;
+    width: 100%;
+  }
+}
+// Navigation
+.nav {
+  visibility: hidden;
+  margin: 0 24px;
+  &--container {
+    opacity: 1;
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $grey-5;
+    position: relative;
+  }
+  &--logo {
+    width: 45px;
+    height: auto;
+  }
+  &--menu {
+    position: relative;
+    cursor: pointer;
+    &__button {
+      background-color: $primary-blue;
+      width: 25px;
+      height: 2px;
+      margin: 6px 0;
+      border-radius: 2px;
+      &::before,
+      &::after {
+        content: "";
+        background-color: $primary-blue;
+        width: 25px;
+        border-radius: 2px;
+        height: 2px;
+        position: absolute;
+      }
+      &::before {
+        top: 0;
+      }
+      &::after {
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.card {
+  background: $white;
+  box-shadow: 0px 16px 24px rgba(20, 19, 22, 0.08);
+  border-radius: 24px;
+  &--merchant {
+    padding: 40px 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-bottom: 16px;
+      border-radius: 50%;
+    }
+    h4 {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 4px;
+      color: $black;
+    }
+    p {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 16px;
+      color: #56bca6;
+    }
+    &__sm {
+      padding: 16px;
+      p {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: $white;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  p {
+    margin: 0;
+  }
+}
+
+.text-field {
+  border: 0;
+  width: 100%;
+  border-bottom: 1px solid $grey-4;
+  padding: 0;
+  padding-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  outline: none;
+  box-shadow: none;
+  background: none;
+  height: 28px;
+  color: $grey-1;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: $font-face-inter;
+  border-radius: 0;
+  transition: 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &--large {
+    padding-bottom: 12px;
+    height: 52px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  &:active,
+  &:hover {
+    border-radius: 0 !important;
+    border-bottom: 1px solid $primary-blue;
+  }
+}
+
+.linear--loader {
+  width: 100%;
+  height: 4px;
+  position: sticky;
+  top: 0;
+  background-color: $primary-blue;
+}
