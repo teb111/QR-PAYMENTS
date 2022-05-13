@@ -39,7 +39,7 @@ export default function Method({ handleClick }) {
 
 
     } catch (error) {
-      console.log(error)
+      return error
     }
   }
   const buttons = [
@@ -108,9 +108,8 @@ export default function Method({ handleClick }) {
   useEffect(() => {
     methodInteraction(wrapper, text, buttonsRef);
     fetchFromLocalStorage();
-    console.log('loggging')
     if (confirmObj.ref_code === "") {
-      navigate("/callback/home");
+      navigate("/");
     }
   }, [buttonsRef, transaction]);
 

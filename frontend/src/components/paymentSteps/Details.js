@@ -27,7 +27,7 @@ function Details({ handleClick }) {
 
   const fetchTransaction = useSelector(state => state.fetchTransaction);
   const { loading, success, transaction } = fetchTransaction
-  console.log(transaction);
+
 
 
   useEffect(() => {
@@ -45,7 +45,6 @@ function Details({ handleClick }) {
       setAmount(transaction?.data?.amount);
       setCurrency(transaction?.data?.currency);
       localStorage.setItem('Customer', JSON.stringify(transaction?.data));
-      console.log(name, bank, accountNumber)
     } else if (!loading && success && transaction?.status === "error") {
       setError(transaction?.message)
     }

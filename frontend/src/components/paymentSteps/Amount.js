@@ -64,7 +64,7 @@ export default function Amount({ handleClick }) {
       setRefCode(transaction?.data?.ref_code)
     }
     else if (name === "") {
-      navigate('/callback/home');
+      navigate('/');
     }
   }, []);
 

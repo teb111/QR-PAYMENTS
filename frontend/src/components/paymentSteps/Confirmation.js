@@ -18,7 +18,7 @@ export default function Confirmation({
   const [customerObj, setCustomerObj] = useState({});
   const paymentReducer = useSelector(state => state.paymentReducer);
   const { loading, success, payment } = paymentReducer
-  console.log(payment)
+
 
   const confirmationDetails = [
     {
@@ -60,16 +60,15 @@ export default function Confirmation({
   let obj3;
   const fetchFromLocalStorage = () => {
     if (!localStorage.getItem("Payment") && localStorage.getItem("AmountScreen")) {
-      navigate("/callback/home");
+      navigate("/");
     }
     obj = localStorage.getItem("Payment");
     obj2 = localStorage.getItem("Customer")
     obj = JSON.parse(obj);
     obj2 = JSON.parse(obj2);
-    console.log(obj2)
     setPaymentObj(obj)
     setCustomerObj(obj2)
-    console.log(paymentObj?.payment_url)
+
 
   }
 
@@ -112,8 +111,6 @@ export default function Confirmation({
         >
           Confirm Payment
         </h6>
-
-        {console.log(loading, success, payment)}
         {loading && <Loading />}
         {!loading && success ? (
           <>

@@ -145,7 +145,7 @@ export default function Success({ handleClick }) {
           <Button
             color="primary"
             text="Okay"
-            Click={() => window.location.href = navigate("/callback/home")}
+            Click={() => window.location.href = navigate("/")}
           />
         </Rodal>
       </div>
