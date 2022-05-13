@@ -6,8 +6,10 @@ import { PAYMENT_STEP } from "../../services/constants";
 import Button from "../Button";
 import { successInteraction } from "../../services/animations";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Success({ handleClick }) {
+  const navigate = useNavigate()
   const [modal, setModal] = useState(false);
   const [error, setError] = useState("");
   const [confirmObj, setConfirmObj] = useState({});
@@ -143,7 +145,7 @@ export default function Success({ handleClick }) {
           <Button
             color="primary"
             text="Okay"
-            Click={() => window.location.href = "http://localhost:4200"}
+            Click={() => window.location.href = process.env.REACT_APP.REDIRECT_URL}
           />
         </Rodal>
       </div>

@@ -58,7 +58,7 @@ export default function Confirmation({
   let obj3;
   const fetchFromLocalStorage = () => {
     if (!localStorage.getItem("Payment") && localStorage.getItem("AmountScreen")) {
-      window.location.href = "http://localhost:4200/Y6526gd7"
+      window.location.href = process.env.REACT_APP.REDIRECT_URL
     }
     obj = localStorage.getItem("Payment");
     obj2 = localStorage.getItem("Customer")

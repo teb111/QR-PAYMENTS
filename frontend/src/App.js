@@ -18,7 +18,6 @@ import Confirmation from "./components/paymentSteps/Confirmation";
 import Loading from "./components/paymentSteps/Loading";
 import Success from "./components/paymentSteps/Success";
 import Paid from "./components/paymentSteps/Paid";
-import Receipt from "./components/paymentSteps/Receipt";
 
 function App() {
   // To use the global loader
@@ -109,7 +108,6 @@ function PageScreens() {
         <Route path="/amount" element={<Amount handleClick={updateScreen} />} />
         <Route path="/method" element={<Method handleClick={updateScreen} />} />
         <Route path="/card" element={<Card handleClick={updateScreen} />} />
-        <Route path="/receipt" element={<Receipt handleClick={updateScreen} />} />
         <Route
           path="/confirmation"
           element={

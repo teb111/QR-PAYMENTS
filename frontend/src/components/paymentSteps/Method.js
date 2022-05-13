@@ -110,7 +110,7 @@ export default function Method({ handleClick }) {
     fetchFromLocalStorage();
     console.log('loggging')
     if (confirmObj.ref_code === "") {
-      window.location.href = "http://localhost:4200"
+      window.location.href = process.env.REACT_APP.REDIRECT_URL
     }
   }, [buttonsRef, transaction]);
 

@@ -15,7 +15,7 @@ export const fetchTransactionAction = (id) => async (dispatch) => {
         };
 
 
-        const { data } = await axios.post(`http://localhost:5000/fetch_payment`, { ref_code }, config);
+        const { data } = await axios.post(`${process.env.NODE_BASE_URL}/fetch_payment`, { ref_code }, config);
         dispatch({
             type: PAYMENT_CONSTANTS.FETCH_TRANSACTION_SUCCESS,
             payload: data?.data,
@@ -49,7 +49,7 @@ export const initialisePaymentAction = (data) => async (dispatch) => {
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/initialise_payment`, paymentData, config);
+        const { data } = await axios.post(`${process.env.NODE_BASE_URL}/initialise_payment`, paymentData, config);
         dispatch({
             type: PAYMENT_CONSTANTS.INITIALISE_PAYMENT_SUCCESS,
             payload: data?.data,
@@ -76,7 +76,7 @@ export const verifyTransactionAction = (transaction_ref) => async (dispatch) => 
         }
 
 
-        const { data } = await axios.post(`http://localhost:5000/verify_payment`, { transaction_ref }, config);
+        const { data } = await axios.post(`${process.env.NODE_BASE_URL}/verify_payment`, { transaction_ref }, config);
         dispatch({
             type: PAYMENT_CONSTANTS.VERIFY_TRANSACTION_SUCCESS,
             payload: data?.data,
