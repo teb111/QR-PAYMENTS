@@ -4,6 +4,7 @@ import { exitScreen, confirmationInteraction } from "../../services/animations";
 import Button from "../Button";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Confirmation({
   name,
@@ -11,6 +12,7 @@ export default function Confirmation({
   bank,
   handleClick,
 }) {
+  const navigate = useNavigate()
   // Variables
   const [paymentObj, setPaymentObj] = useState({});
   const [customerObj, setCustomerObj] = useState({});
@@ -58,7 +60,7 @@ export default function Confirmation({
   let obj3;
   const fetchFromLocalStorage = () => {
     if (!localStorage.getItem("Payment") && localStorage.getItem("AmountScreen")) {
-      window.location.href = process.env.REACT_APP.REDIRECT_URL
+      navigate("/callback/home");
     }
     obj = localStorage.getItem("Payment");
     obj2 = localStorage.getItem("Customer")

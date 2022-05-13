@@ -145,7 +145,7 @@ export default function Success({ handleClick }) {
           <Button
             color="primary"
             text="Okay"
-            Click={() => window.location.href = process.env.REACT_APP.REDIRECT_URL}
+            Click={() => window.location.href = navigate("/callback/home")}
           />
         </Rodal>
       </div>

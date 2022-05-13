@@ -64,7 +64,7 @@ export default function Amount({ handleClick }) {
       setRefCode(transaction?.data?.ref_code)
     }
     else if (name === "") {
-      window.location.href = process.env.REACT_APP.REDIRECT_URL
+      navigate('/callback/home');
     }
   }, []);
 
