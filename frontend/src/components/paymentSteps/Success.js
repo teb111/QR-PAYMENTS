@@ -145,7 +145,7 @@ export default function Success({ handleClick }) {
           <Button
             color="primary"
             text="Okay"
-            Click={() => window.location.href = navigate("/")}
+            Click={() => navigate("/")}
           />
         </Rodal>
       </div>
