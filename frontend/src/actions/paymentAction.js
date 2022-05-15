@@ -50,7 +50,7 @@ export const initialisePaymentAction = (data) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:5000/initialise_payment`,
+      `/initialise_payment`,
       paymentData,
       config
     );

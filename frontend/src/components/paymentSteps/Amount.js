@@ -147,14 +147,14 @@ export default function Amount({ handleClick }) {
               }}
             >
               <p className="p-text label-text">
-                Full Name <i>{nameRequired == 0 && "(optional)"}</i>
+                Full Name <i>{nameRequired === 0 && "(optional)"}</i>
               </p>
               <input
                 type="text"
                 name="name"
                 className="text-field"
                 onChange={handleInputChange}
-                required={nameRequired == 1 ? true : false}
+                required={nameRequired === 1 ? true : false}
               />
             </div>
             <div
@@ -163,14 +163,14 @@ export default function Amount({ handleClick }) {
               }}
             >
               <p className="p-text label-text">
-                Email <i>{emailRequired == 0 && "(optional)"}</i>
+                Email <i>{emailRequired === 0 && "(optional)"}</i>
               </p>
               <input
                 type="email"
                 name="email"
                 className="text-field"
                 onChange={handleInputChange}
-                required={emailRequired == 1 ? true : false}
+                required={emailRequired === 1 ? true : false}
               />
             </div>
             <div
@@ -186,7 +186,7 @@ export default function Amount({ handleClick }) {
                 prefix={CURRENCY_SYMBOL}
                 value={defaultAmount !== 0 ? defaultAmount : amount}
                 onChangeEvent={handleInput}
-                disabled={defaultAmount == 0 ? false : true}
+                disabled={defaultAmount === 0 ? false : true}
               />
             </div>
 
