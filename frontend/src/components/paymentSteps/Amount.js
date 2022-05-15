@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Amount({ handleClick }) {
-  const navigate = useNavigate()
-  // State variables 
+  const navigate = useNavigate();
+  // State variables
   // const [amount, setAmount] = useState(0);
   const [details, setDetails] = useState({});
   const [amountObj, setAmountObj] = useState();
@@ -22,12 +22,11 @@ export default function Amount({ handleClick }) {
   const [nameRequired, setNameRequired] = useState(false);
   const [emailRequired, setEmailRequired] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [defaultAmount, setDefaultAmount] = useState(0)
+  const [defaultAmount, setDefaultAmount] = useState(0);
   const [currency, setCurrency] = useState("");
   const [ref_code, setRefCode] = useState("");
-  const fetchTransaction = useSelector(state => state.fetchTransaction);
-  const { loading, success, transaction } = fetchTransaction
-
+  const fetchTransaction = useSelector((state) => state.fetchTransaction);
+  const { loading, success, transaction } = fetchTransaction;
 
   // Functions
   const handleInput = (e, maskedvalue, floatvalue) => {
@@ -41,7 +40,6 @@ export default function Amount({ handleClick }) {
   let emailField = useRef(null);
   let nameField = useRef(null);
 
-
   useEffect(() => {
     amountInteraction(
       wrapper,
@@ -52,6 +50,29 @@ export default function Amount({ handleClick }) {
       nameField,
       button
     );
+    let componentDidMount_super = CurrencyInput.prototype.componentDidMount;
+    CurrencyInput.prototype.componentDidMount = function () {
+      if (!this.props.autoFocus) {
+        let setSelectionRange_super = this.theInput.setSelectionRange;
+        this.theInput.setSelectionRange = () => { };
+        componentDidMount_super.call(this, ...arguments);
+        this.theInput.setSelectionRange = setSelectionRange_super;
+      } else {
+        componentDidMount_super.call(this, ...arguments);
+      }
+    };
+
+    let componentDidUpdate_super = CurrencyInput.prototype.componentDidUpdate;
+    CurrencyInput.prototype.componentDidUpdate = function () {
+      if (!this.props.autoFocus) {
+        let setSelectionRange_super = this.theInput.setSelectionRange;
+        this.theInput.setSelectionRange = () => { };
+        componentDidUpdate_super.call(this, ...arguments);
+        this.theInput.setSelectionRange = setSelectionRange_super;
+      } else {
+        componentDidMount_super.call(this, ...arguments);
+      }
+    };
     if (!loading && success && transaction?.status === "success") {
       setName(transaction?.data?.outlet?.name);
       setBank(transaction?.data?.title);
@@ -59,12 +80,11 @@ export default function Amount({ handleClick }) {
       setNameRequired(transaction?.data?.names_required);
       setEmailRequired(transaction?.data?.email_required);
       setAmount(transaction?.data?.amount);
-      setDefaultAmount(transaction?.data?.amount)
+      setDefaultAmount(transaction?.data?.amount);
       setCurrency(transaction?.data?.currency);
-      setRefCode(transaction?.data?.ref_code)
-    }
-    else if (name === "") {
-      navigate('/');
+      setRefCode(transaction?.data?.ref_code);
+    } else if (name === "") {
+      window.location.href = "http://localhost:4200";
     }
   }, []);
 
@@ -74,20 +94,20 @@ export default function Amount({ handleClick }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('ConfirmationScreen', JSON.stringify({
-      email: details?.email,
-      fullname: details?.name,
-      amount,
-      ref_code,
-    }))
+    localStorage.setItem(
+      "ConfirmationScreen",
+      JSON.stringify({
+        email: details?.email,
+        fullname: details?.name,
+        amount,
+        ref_code,
+      })
+    );
     exitScreen(wrapper, handleClick, PAYMENT_STEP.METHOD);
   };
 
-
   return (
-
     <>
-
       <div
         ref={(el) => {
           wrapper = el;
@@ -110,9 +130,10 @@ export default function Amount({ handleClick }) {
                 heading = el;
               }}
             >
-
               <h6>{name}</h6>
-              <p>{accountNumber}- {bank}</p>
+              <p>
+                {accountNumber}- {bank}
+              </p>
             </div>
           </div>
           <form
@@ -126,7 +147,7 @@ export default function Amount({ handleClick }) {
               }}
             >
               <p className="p-text label-text">
-                Full Name <i>{nameRequired == 0 && ("(optional)")}</i>
+                Full Name <i>{nameRequired == 0 && "(optional)"}</i>
               </p>
               <input
                 type="text"
@@ -142,7 +163,7 @@ export default function Amount({ handleClick }) {
               }}
             >
               <p className="p-text label-text">
-                Email <i>{emailRequired == 0 && ("(optional)")}</i>
+                Email <i>{emailRequired == 0 && "(optional)"}</i>
               </p>
               <input
                 type="email"
@@ -174,7 +195,6 @@ export default function Amount({ handleClick }) {
                 button = el;
               }}
             >
-
               <Button
                 color="primary"
                 disabled={!amount}
@@ -186,7 +206,6 @@ export default function Amount({ handleClick }) {
         </div>
         <Footer />
       </div>
-
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import { useNavigate } from "react-router-dom";
 
 import { PAYMENT_STEP } from "../../services/constants";
 import Button from "../Button";
@@ -14,27 +15,27 @@ export default function Success({ handleClick }) {
   const [error, setError] = useState("");
   const [confirmObj, setConfirmObj] = useState({});
   const [transDate, setDate] = useState("");
-  const verifyTransaction = useSelector(state => state.verifyTransaction);
-  const { loading, success, transactionVerify } = verifyTransaction
+  const verifyTransaction = useSelector((state) => state.verifyTransaction);
+  const { loading, success, transactionVerify } = verifyTransaction;
 
-  if ((Object.keys(transactionVerify).length === 0) &&
-    transactionVerify.constructor === Object) {
+  if (
+    Object.keys(transactionVerify).length === 0 &&
+    transactionVerify.constructor === Object
+  ) {
     if (transactionVerify?.data.payment_status === "confirmed") {
-      setDate(transactionVerify?.data?.amount)
-      navigate("/success")
+      setDate(transactionVerify?.data?.amount);
+      navigate("/success");
     } else if (transactionVerify?.data?.status === "error") {
-      setError(transactionVerify.message)
+      setError(transactionVerify.message);
     }
-
   }
-
 
   let obj;
   const fetchFromLocalStorage = () => {
-    obj = localStorage.getItem("ConfirmationScreen")
+    obj = localStorage.getItem("ConfirmationScreen");
     obj = JSON.parse(obj);
-    setConfirmObj(obj)
-  }
+    setConfirmObj(obj);
+  };
 
   const openModal = () => {
     setModal(true);
@@ -44,12 +45,13 @@ export default function Success({ handleClick }) {
     setModal(false);
   };
 
-
-
   const confirmationDetails = [
     {
       text: "Date",
-      value: transactionVerify && transactionVerify?.data ? transactionVerify?.data?.created_at : null,
+      value:
+        transactionVerify && transactionVerify?.data
+          ? transactionVerify?.data?.created_at
+          : null,
       total: false,
     },
     {
@@ -59,15 +61,20 @@ export default function Success({ handleClick }) {
     },
     {
       text: "Amount",
-      value: transactionVerify && transactionVerify?.data ? "NGN " + transactionVerify?.data?.amount : null,
+      value:
+        transactionVerify && transactionVerify?.data
+          ? "NGN " + transactionVerify?.data?.amount
+          : null,
       total: false,
     },
     {
       text: "Reference",
-      value: transactionVerify && transactionVerify?.data ? transactionVerify?.data?.trans_reference : null,
+      value:
+        transactionVerify && transactionVerify?.data
+          ? transactionVerify?.data?.trans_reference
+          : null,
       total: false,
     },
-
   ];
 
   let text = useRef(null);
@@ -102,8 +109,7 @@ export default function Success({ handleClick }) {
         }}
         className="p-text text-center payment--intro"
       >
-        you will get a
-        notification shortly
+        you will get a notification shortly
       </p>
       <div
         ref={(el) => {
@@ -124,7 +130,9 @@ export default function Success({ handleClick }) {
           leaveAnimation="slideDown"
         >
           <img src="./images/avatar.jpg" alt="Merchant-Avatar" />
-          <h6 className="title-text text-center">{confirmObj && confirmObj?.fullname}</h6>
+          <h6 className="title-text text-center">
+            {confirmObj && confirmObj?.fullname}
+          </h6>
           <h5 className="text-center">Payment Reciept</h5>
           <div className="payment--confirmation__details payment--success__details">
             {confirmationDetails.map((item, index) => {
