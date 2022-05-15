@@ -84,7 +84,7 @@ export default function Amount({ handleClick }) {
       setCurrency(transaction?.data?.currency);
       setRefCode(transaction?.data?.ref_code);
     } else if (name === "") {
-      window.location.href = "http://localhost:4200";
+      navigate("/")
     }
   }, []);
 
