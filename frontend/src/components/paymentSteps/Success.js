@@ -7,7 +7,6 @@ import { PAYMENT_STEP } from "../../services/constants";
 import Button from "../Button";
 import { successInteraction } from "../../services/animations";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 export default function Success({ handleClick }) {
   const navigate = useNavigate()
