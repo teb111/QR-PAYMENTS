@@ -185,6 +185,8 @@ body {
   font-family: $font-face-inter;
   border-radius: 0;
   transition: 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-user-select: text;
+  user-select: text;
 
   &--large {
     padding-bottom: 12px;
