@@ -14,7 +14,11 @@ export const fetchTransactionAction = (id) => async (dispatch) => {
       }
     }
 
-    const { data } = await axios.post(`/fetch_payment`, { ref_code }, config)
+    const { data } = await axios.post(
+      `https://feego-backend.onrender.com/fetch_payment`,
+      { ref_code },
+      config
+    )
     dispatch({
       type: PAYMENT_CONSTANTS.FETCH_TRANSACTION_SUCCESS,
       payload: data?.data
@@ -48,7 +52,7 @@ export const initialisePaymentAction = (data) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      `/initialise_payment`,
+      `https://feego-backend.onrender.com/initialise_payment`,
       paymentData,
       config
     )
@@ -78,7 +82,7 @@ export const verifyTransactionAction =
       }
 
       const { data } = await axios.post(
-        `/verify_payment`,
+        `https://feego-backend.onrender.com/verify_payment`,
         { transaction_ref },
         config
       )
