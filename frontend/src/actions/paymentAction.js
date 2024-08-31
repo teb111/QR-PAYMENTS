@@ -53,7 +53,7 @@ export const initialisePaymentAction = (data) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      `http://localhost:4000/initialise_payment`,
+      `https://feego-backend.onrender.com/initialise_payment`,
       paymentData,
       config
     )
