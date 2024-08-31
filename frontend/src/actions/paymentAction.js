@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { PAYMENT_CONSTANTS } from '../services/constants'
+import axios from "axios"
+import { PAYMENT_CONSTANTS } from "../services/constants"
 
 export const fetchTransactionAction = (id) => async (dispatch) => {
   try {
@@ -36,9 +36,10 @@ export const initialisePaymentAction = (data) => async (dispatch) => {
   const paymentData = {
     ref_code: data?.ref_code,
     amount: data?.amount,
-    phone_number: '081765783837',
+    phone_number: "081765783837",
     fullname: data?.fullname,
-    email: data?.email
+    email: data?.email,
+    payment_option_id: data?.payment_method_id
   }
   try {
     dispatch({
@@ -56,6 +57,7 @@ export const initialisePaymentAction = (data) => async (dispatch) => {
       paymentData,
       config
     )
+    console.log(data)
     dispatch({
       type: PAYMENT_CONSTANTS.INITIALISE_PAYMENT_SUCCESS,
       payload: data?.data
