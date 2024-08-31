@@ -1,4 +1,4 @@
-import { BUTTON_ICONS } from "../services/constants";
+import { BUTTON_ICONS } from "../services/constants"
 
 export default function Button({
   text,
@@ -7,35 +7,35 @@ export default function Button({
   color = "none",
   Click,
   full = true,
-  children,
+  children
 }) {
   const getIconSource = () => {
     switch (icon) {
       case BUTTON_ICONS.PAYSTACK:
-        return "./images/paystack-logo.png";
+        return "./images/paystack-logo.png"
       case BUTTON_ICONS.APPLE:
-        return "./images/apple-logo.png";
+        return "./images/apple-logo.png"
       case BUTTON_ICONS.GOOGLE_PAY:
-        return "./images/googlepay-logo.png";
+        return "./images/googlepay-logo.png"
       case BUTTON_ICONS.CARD:
-        return "./images/creditcard-logo.png";
+        return "./images/creditcard-logo.png"
       case BUTTON_ICONS.ABSA:
-        return "./images/absa-logo.png";
+        return "./images/absa-logo.png"
       case BUTTON_ICONS.KCB:
-        return "./images/kcb-logo.png";
+        return "./images/kcb-logo.png"
       case BUTTON_ICONS.NBK:
-        return "./images/nbk-logo.png";
+        return "./images/nbk-logo.png"
       default:
-        return "./images/creditcard-logo.png";
+        return "./images/creditcard-logo.png"
     }
-  };
+  }
   const performClick = () => {
     if (typeof Click === "function") {
       setTimeout(() => {
-        Click();
-      }, 300);
+        Click()
+      }, 300)
     }
-  };
+  }
 
   return (
     <button
@@ -46,9 +46,9 @@ export default function Button({
       onClick={performClick}
     >
       {icon ? (
-        <img className="btn--icon-image" src={getIconSource()} alt={icon} />
+        <img className="btn--icon-image" src={icon} alt={"button"} />
       ) : null}
       {text} {children}
     </button>
-  );
+  )
 }
