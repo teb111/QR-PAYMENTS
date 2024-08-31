@@ -45,9 +45,7 @@ export default function Button({
       }`}
       onClick={performClick}
     >
-      {icon ? (
-        <img className="btn--icon-image" src={icon} alt={"button"} />
-      ) : null}
+      {icon ? <img className="btn--icon-image" src={icon} alt={icon} /> : null}
       {text} {children}
     </button>
   )
