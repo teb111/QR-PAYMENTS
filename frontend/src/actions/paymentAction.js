@@ -83,6 +83,8 @@ export const verifyTransactionAction =
         }
       }
 
+      console.log(transaction_ref)
+
       const { data } = await axios.post(
         `https://feego-backend.onrender.com/verify_payment`,
         { transaction_ref },
