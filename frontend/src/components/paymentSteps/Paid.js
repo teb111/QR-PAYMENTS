@@ -11,7 +11,9 @@ const Paid = () => {
 
   // Check for both "trxref" and "reference" in the URL
   const transaction_ref =
-    searchParams.get("trxref") || searchParams.get("reference")
+    searchParams.get("trxref") ||
+    searchParams.get("reference") ||
+    searchParams.get("paymentReference")
 
   const [error, setError] = useState("")
   const reference = useRef(true)
