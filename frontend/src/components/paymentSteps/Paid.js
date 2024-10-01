@@ -20,24 +20,25 @@ const Paid = () => {
   const verifyTransaction = useSelector((state) => state.verifyTransaction)
   const { loading, success, transactionVerify } = verifyTransaction
 
-  if (
-    !loading &&
-    !(Object.keys(transactionVerify).length === 0) &&
-    transactionVerify.constructor === Object
-  ) {
-    if (transactionVerify?.data.payment_status === "confirmed") {
-      navigate("/success")
-    } else if (transactionVerify?.data?.status === "error") {
-      setError(transactionVerify.message)
-    }
-  }
-
   useEffect(() => {
     if (reference.current) {
       dispatch(verifyTransactionAction(transaction_ref))
       reference.current = false
     }
-  }, [transaction_ref, reference, dispatch])
+    if (
+      !loading &&
+      !(Object.keys(transactionVerify).length === 0) &&
+      transactionVerify.constructor === Object
+    ) {
+      if (transactionVerify?.data.payment_status === "confirmed") {
+        navigate("/success")
+      } else if (transactionVerify?.data?.status === "error") {
+        setError(transactionVerify.message)
+      } else if (transactionVerify?.data?.payment_status === "pending") {
+        navigate(`/pending?paymentReference=${transaction_ref}`)
+      }
+    }
+  }, [transaction_ref, reference, dispatch, transactionVerify])
 
   return (
     <>
