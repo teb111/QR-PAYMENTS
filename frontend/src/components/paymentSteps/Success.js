@@ -1,48 +1,49 @@
-import { useEffect, useRef, useState } from "react";
-import Rodal from "rodal";
-import "rodal/lib/rodal.css";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react"
+import Rodal from "rodal"
+import "rodal/lib/rodal.css"
+import { useNavigate } from "react-router-dom"
 
-import { PAYMENT_STEP } from "../../services/constants";
-import Button from "../Button";
-import { successInteraction } from "../../services/animations";
-import { useSelector } from "react-redux";
+import { PAYMENT_STEP } from "../../services/constants"
+import Button from "../Button"
+import { successInteraction } from "../../services/animations"
+import { useSelector } from "react-redux"
 
 export default function Success({ handleClick }) {
   const navigate = useNavigate()
-  const [modal, setModal] = useState(false);
-  const [error, setError] = useState("");
-  const [confirmObj, setConfirmObj] = useState({});
-  const [transDate, setDate] = useState("");
-  const verifyTransaction = useSelector((state) => state.verifyTransaction);
-  const { loading, success, transactionVerify } = verifyTransaction;
+  const [modal, setModal] = useState(false)
+  const [error, setError] = useState("")
+  const [confirmObj, setConfirmObj] = useState({})
+  const [transDate, setDate] = useState("")
+  const verifyTransaction = useSelector((state) => state.verifyTransaction)
+  const { loading, success, transactionVerify } = verifyTransaction
 
   if (
+    transactionVerify !== null &&
     Object.keys(transactionVerify).length === 0 &&
     transactionVerify.constructor === Object
   ) {
-    if (transactionVerify?.data.payment_status === "confirmed") {
-      setDate(transactionVerify?.data?.amount);
-      navigate("/success");
+    if (transactionVerify?.data?.payment_status === "confirmed") {
+      setDate(transactionVerify?.data?.amount)
+      navigate("/success")
     } else if (transactionVerify?.data?.status === "error") {
-      setError(transactionVerify.message);
+      setError(transactionVerify.message)
     }
   }
 
-  let obj;
+  let obj
   const fetchFromLocalStorage = () => {
-    obj = localStorage.getItem("ConfirmationScreen");
-    obj = JSON.parse(obj);
-    setConfirmObj(obj);
-  };
+    obj = localStorage.getItem("ConfirmationScreen")
+    obj = JSON.parse(obj)
+    setConfirmObj(obj)
+  }
 
   const openModal = () => {
-    setModal(true);
-  };
+    setModal(true)
+  }
 
   const closeModal = () => {
-    setModal(false);
-  };
+    setModal(false)
+  }
 
   const confirmationDetails = [
     {
@@ -51,12 +52,12 @@ export default function Success({ handleClick }) {
         transactionVerify && transactionVerify?.data
           ? transactionVerify?.data?.created_at
           : null,
-      total: false,
+      total: false
     },
     {
       text: "Payment method",
       value: "Card",
-      total: false,
+      total: false
     },
     {
       text: "Amount",
@@ -64,7 +65,7 @@ export default function Success({ handleClick }) {
         transactionVerify && transactionVerify?.data
           ? "NGN " + transactionVerify?.data?.amount
           : null,
-      total: false,
+      total: false
     },
     {
       text: "Reference",
@@ -72,31 +73,31 @@ export default function Success({ handleClick }) {
         transactionVerify && transactionVerify?.data
           ? transactionVerify?.data?.trans_reference
           : null,
-      total: false,
-    },
-  ];
+      total: false
+    }
+  ]
 
-  let text = useRef(null);
-  let paragraph = useRef(null);
-  let wrapper = useRef(null);
-  let button = useRef(null);
+  let text = useRef(null)
+  let paragraph = useRef(null)
+  let wrapper = useRef(null)
+  let button = useRef(null)
 
   useEffect(() => {
-    fetchFromLocalStorage();
-    successInteraction(wrapper, [text, paragraph, button]);
-  }, []);
+    fetchFromLocalStorage()
+    successInteraction(wrapper, [text, paragraph, button])
+  }, [])
 
   return (
     <div
       ref={(el) => {
-        wrapper = el;
+        wrapper = el
       }}
       className="payment--success"
     >
       <img src="./images/success.svg" alt="Payment Successful" />
       <h6
         ref={(el) => {
-          text = el;
+          text = el
         }}
         className="title-text text-center"
       >
@@ -104,7 +105,7 @@ export default function Success({ handleClick }) {
       </h6>
       <p
         ref={(el) => {
-          paragraph = el;
+          paragraph = el
         }}
         className="p-text text-center payment--intro"
       >
@@ -112,7 +113,7 @@ export default function Success({ handleClick }) {
       </p>
       <div
         ref={(el) => {
-          button = el;
+          button = el
         }}
         className="payment--success__btn"
       >
@@ -137,25 +138,21 @@ export default function Success({ handleClick }) {
             {confirmationDetails.map((item, index) => {
               return (
                 <div key={index}>
-                  <p className="body-text">{item.text}</p>
-                  {item.total ? (
+                  <p className="body-text">{item?.text}</p>
+                  {item?.total ? (
                     <p className="body-text">
-                      <b>{item.value}</b>
+                      <b>{item?.value}</b>
                     </p>
                   ) : (
-                    <p className="body-text">{item.value}</p>
+                    <p className="body-text">{item?.value}</p>
                   )}
                 </div>
-              );
+              )
             })}
           </div>
-          <Button
-            color="primary"
-            text="Okay"
-            Click={() => navigate("/")}
-          />
+          <Button color="primary" text="Okay" Click={() => navigate("/")} />
         </Rodal>
       </div>
     </div>
-  );
+  )
 }
