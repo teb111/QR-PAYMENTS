@@ -14,4 +14,5 @@ router.post('/verify_payment', (req, res) => {
     PaymentControllerHandler.VerifyTransaction(req, res)
 })
 
-module.exports = router
+module.exports = router;
+
