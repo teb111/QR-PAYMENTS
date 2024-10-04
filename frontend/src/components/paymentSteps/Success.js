@@ -17,18 +17,18 @@ export default function Success({ handleClick }) {
   const verifyTransaction = useSelector((state) => state.verifyTransaction)
   const { loading, success, transactionVerify } = verifyTransaction
 
-  if (
-    transactionVerify !== null &&
-    Object.keys(transactionVerify).length === 0 &&
-    transactionVerify.constructor === Object
-  ) {
-    if (transactionVerify?.data?.payment_status === "confirmed") {
-      setDate(transactionVerify?.data?.amount)
-      navigate("/success")
-    } else if (transactionVerify?.data?.status === "error") {
-      setError(transactionVerify.message)
-    }
-  }
+  // if (
+  //   transactionVerify !== null &&
+  //   Object.keys(transactionVerify).length === 0 &&
+  //   transactionVerify.constructor === Object
+  // ) {
+  //   if (transactionVerify?.data?.payment_status === "confirmed") {
+  //     setDate(transactionVerify?.data?.amount)
+  //     navigate("/success")
+  //   } else if (transactionVerify?.data?.status === "error") {
+  //     setError(transactionVerify.message)
+  //   }
+  // }
 
   let obj
   const fetchFromLocalStorage = () => {
