@@ -18,7 +18,12 @@ export default function Pending({ handleClick }) {
   const [confirmObj, setConfirmObj] = useState({})
   const [transDate, setDate] = useState("")
   const verifyTransaction = useSelector((state) => state.verifyTransaction)
-  const { loading, success, transactionVerify } = verifyTransaction
+  const {
+    loading,
+    success,
+    transactionVerify,
+    error: verifyError
+  } = verifyTransaction
 
   const transaction_ref =
     searchParams.get("trxref") ||
@@ -113,33 +118,43 @@ export default function Pending({ handleClick }) {
     >
       {/* <img src="./images/success.svg" alt="Payment Successful" /> */}
       <h6
-        ref={(el) => {
-          text = el
-        }}
+        // ref={(el) => {
+        //   text = el
+        // }}
         className="title-text text-center"
       >
         Payment Pending
       </h6>
+      {verifyError && (
+        <h6
+          ref={(el) => {
+            text = el
+          }}
+          className="title-text text-center"
+        >
+          {verifyError?.message}
+        </h6>
+      )}
       <p
-        ref={(el) => {
-          paragraph = el
-        }}
+        // ref={(el) => {
+        //   paragraph = el
+        // }}
         className="p-text text-center payment--intro"
       >
         Please Click the button below to requery payment
       </p>
-      <div
+      {/* <div
         ref={(el) => {
           button = el
         }}
         className="payment--success__btn"
-      >
-        <Button
-          color="primary"
-          text="Requery Transaction"
-          Click={() => requeryStatus()}
-        />
-      </div>
+      > */}
+      <Button
+        color="primary"
+        text="Requery Transaction"
+        Click={() => requeryStatus()}
+      />
+      {/* </div> */}
       <div className="payment--success__modal">
         {/* <Rodal
           visible={modal}
